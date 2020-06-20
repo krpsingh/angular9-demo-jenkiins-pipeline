@@ -1,0 +1,98 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        Reactive Survey Form
+    </div>
+
+    <div class="panel-body">
+        <form class="form-horizontal" (ngSubmit)="save()" [formGroup]="surveyForm">
+            <div class="form-group">
+                <label class="col-md-2 control-label">FirstName</label>
+                <div class="col-md-8" [ngClass]="{'has-error':(!surveyForm.get('firstName').valid)}">
+                    <input type="text" class="form-control"
+                     formControlName="firstName"
+                     id="fname"
+                     placeholder="Enter your first name"/>
+                     <span class="help-block" *ngIf="(surveyForm.get('firstName').errors)">
+                         <span *ngIf="surveyForm.get('firstName').errors.required">
+                             FirstName is required.
+                         </span>
+                         <span *ngIf="surveyForm.get('firstName').errors.minlength">
+                            FirstName minlength is 5.
+                        </span>
+                     </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Email</label>
+                <div class="col-md-8" [ngClass]="{'has-error':(!surveyForm.get('email').valid)}">
+                    <input type="text" class="form-control"
+                     formControlName="email"
+                     id="email"
+                     placeholder="Enter your email id"/>
+                     <span class="help-block" *ngIf="(surveyForm.get('email').errors)">
+                        <span *ngIf="surveyForm.get('email').errors.required">
+                            Email is required.
+                        </span>
+                        <span *ngIf="surveyForm.get('email').errors.pattern">
+                            Email correct pattern is required.
+                       </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Phone</label>
+                <div class="col-md-8" [ngClass]="{'has-error':(!surveyForm.get('phone').valid)}">
+                    <input type="text" class="form-control"
+                     formControlName="phone"
+                     id="phone"
+                     placeholder="Enter your phone number"/>
+                     <span class="help-block" *ngIf="(surveyForm.get('phone').errors)">
+                        <span *ngIf="surveyForm.get('phone').errors.required">
+                            Phone is required.
+                        </span>                        
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Notification By: </label>
+                <div class="col-md-8">
+                    <label class="radio-inline">
+                        <input type="radio" value="phone" formControlName="notification" (click)="setNotification('phone')"/>Phone 
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="email" formControlName="notification" (click)="setNotification('email')"/>Email 
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Ratings</label>
+                <div class="col-md-8" [ngClass]="{'has-error':(!surveyForm.get('ratings').valid)}">
+                    <input type="text" class="form-control"
+                     formControlName="ratings"
+                     id="ratings"
+                     placeholder="Please enter your ratings"/>
+                     <span class="help-block" *ngIf="(surveyForm.get('ratings').errors)">
+                        <span *ngIf="surveyForm.get('ratings').errors.required">
+                            Ratings is required.
+                        </span>
+                        <span *ngIf="surveyForm.get('ratings').errors.range">
+                            Ratings should be in between 1 to 10.
+                       </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset">
+                    <span>
+                        <button type="submit" class="btn btn-success" [disabled]="!surveyForm.valid">Submit</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
